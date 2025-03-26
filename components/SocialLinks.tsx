@@ -6,17 +6,17 @@ import { Github, Instagram, Mail } from 'lucide-react';
 const socialLinks = [
 	{
 		icon: <Github className="w-6 h-6" />,
-		href: 'https://github.com',
+		href: 'https://github.com/aname2050',
 		label: 'GitHub',
 	},
 	{
 		icon: <Instagram className="w-6 h-6" />,
-		href: 'https://instagram.com',
+		href: 'https://instagram.com/aname2050',
 		label: 'Instagram',
 	},
 	{
 		icon: <Mail className="w-6 h-6" />,
-		href: 'mailto:example@email.com',
+		href: 'mailto:shafaeebardia@gmail.com',
 		label: 'Email',
 	},
 ];
