@@ -1,16 +1,16 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Notebook, FileWarning, Code, Trophy } from 'lucide-react';
+import { Code, Bot, Flame, Crown } from 'lucide-react';
 
 const highlights = [
 	{
-		icon: <Notebook className="w-12 h-12" />,
+		icon: <Bot className="w-12 h-12" />,
 		title: 'FIRST Robotics',
 		description: 'Competing in innovation',
 	},
 	{
-		icon: <FileWarning className="w-12 h-12" />,
+		icon: <Flame className="w-12 h-12" />,
 		title: 'Cross Country & Track',
 		description: 'Going the distance',
 	},
@@ -20,7 +20,7 @@ const highlights = [
 		description: 'Building the future',
 	},
 	{
-		icon: <Trophy className="w-12 h-12" />,
+		icon: <Crown className="w-12 h-12" />,
 		title: 'Leadership',
 		description: 'Making an impact',
 	},

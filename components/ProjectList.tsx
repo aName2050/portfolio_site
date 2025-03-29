@@ -130,7 +130,7 @@ ProjectList.Detail = function ProjectDetail({ project }: { project: any }) {
 							href={project.links.discord}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
+							className="flex items-center gap-2 px-4 py-2 bg-[#7289DA] text-white rounded-lg hover:bg-[#5b6eae] transition-colors"
 							whileHover={{ scale: 1.05 }}
 							whileTap={{ scale: 0.95 }}
 						>
