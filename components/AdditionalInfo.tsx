@@ -1,8 +1,7 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { Briefcase, Award, GraduationCap, X } from 'lucide-react';
-import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Briefcase, Award, GraduationCap } from 'lucide-react';
 
 const info = {
 	// occupation: {
@@ -32,7 +31,7 @@ const info = {
 			title: 'Treasurer && Secretary',
 			organization: 'M.E.S.U. (Middle Eastern Student Union)',
 			period: '2024 - Present',
-			startDate: '2024-010-01',
+			startDate: '2024-10-01',
 		},
 		{
 			title: 'Treasurer',
@@ -52,191 +51,147 @@ const info = {
 	),
 	education: [
 		{
-			degree: 'Highschool',
+			degree: 'High School Diploma',
 			institution: 'Oak Grove High School',
 			graduation: 'Expected 2027',
-			date: '2027-05-01',
+			date: '2027-06-01',
 		},
 	].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
 };
 
-export function AdditionalInfo() {
-	const [expandedSection, setExpandedSection] = useState<
-		'positions' | 'education' | null
-	>(null);
-
-	const displayedPositions = info.positions.slice(0, 1);
+export function AdditionalInfo({
+	onSectionExpand,
+}: {
+	onSectionExpand: (section: 'positions' | 'education' | null) => void;
+}) {
 	const displayedEducation = info.education.slice(0, 1);
-
-	const hasMorePositions = info.positions.length > 1;
 	const hasMoreEducation = info.education.length > 1;
 
-	const expandedViewVariants = {
-		hidden: { opacity: 0, scale: 0.95 },
-		visible: { opacity: 1, scale: 1 },
-		exit: { opacity: 0, scale: 0.95 },
-	};
-
 	return (
-		<>
-			<div className="space-y-6 mt-8">
-				{/* <motion.div
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 1, y: 0 }}
-					className="space-y-4"
-				>
-					<div className="flex items-center gap-2 text-gray-800">
-						<Briefcase className="w-5 h-5" />
-						<h3 className="text-lg font-semibold">Current Role</h3>
-					</div>
-					<div className="ml-7">
-						<p className="font-medium">{info.occupation.title}</p>
-						<p className="text-gray-600">
-							{info.occupation.company}
-						</p>
-					</div>
-				</motion.div> */}
+		<div className="space-y-6 mt-8">
+			{/* <motion.div
+				initial={{ opacity: 0, y: 20 }}
+				animate={{ opacity: 1, y: 0 }}
+				className="space-y-4"
+			>
+				<div className="flex items-center gap-2 text-gray-800 dark:text-gray-200">
+					<Briefcase className="w-5 h-5" />
+					<h3 className="text-lg font-semibold">Current Role</h3>
+				</div>
+				<div className="ml-7">
+					<p className="font-medium dark:text-white">
+						{info.occupation.title}
+					</p>
+					<p className="text-gray-600 dark:text-gray-400">
+						{info.occupation.company}
+					</p>
+					<p className="text-sm text-gray-500 dark:text-gray-500">
+						{info.occupation.period}
+					</p>
+				</div>
+			</motion.div> */}
 
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ delay: 0.1 }}
-					className="space-y-4"
-				>
-					<div className="flex items-center gap-2 text-gray-800">
-						<Award className="w-5 h-5" />
-						<h3 className="text-lg font-semibold">
-							Leadership Positions
-						</h3>
-					</div>
-					<div className="ml-7 space-y-3">
-						{displayedPositions.map((position, index) => (
-							<div key={index}>
-								<p className="font-medium">{position.title}</p>
-								<p className="text-gray-600">
-									{position.organization}
-								</p>
-								<p className="text-sm text-gray-500">
-									{position.period}
-								</p>
-							</div>
-						))}
-						{hasMorePositions && (
-							<button
-								onClick={() => setExpandedSection('positions')}
-								className="text-orange-500 hover:text-orange-600 font-medium text-sm"
-							>
-								See {info.positions.length - 1} more positions
-							</button>
-						)}
-					</div>
-				</motion.div>
-
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ delay: 0.2 }}
-					className="space-y-4"
-				>
-					<div className="flex items-center gap-2 text-gray-800">
-						<GraduationCap className="w-5 h-5" />
-						<h3 className="text-lg font-semibold">Education</h3>
-					</div>
-					<div className="ml-7">
-						{displayedEducation.map((edu, index) => (
-							<div key={index} className="mb-3">
-								<p className="font-medium">{edu.degree}</p>
-								<p className="text-gray-600">
-									{edu.institution}
-								</p>
-								<p className="text-sm text-gray-500">
-									{edu.graduation}
-								</p>
-							</div>
-						))}
-						{hasMoreEducation && (
-							<button
-								onClick={() => setExpandedSection('education')}
-								className="text-orange-500 hover:text-orange-600 font-medium text-sm"
-							>
-								See {info.education.length - 1} more education
-								entries
-							</button>
-						)}
-					</div>
-				</motion.div>
-			</div>
-
-			<AnimatePresence>
-				{expandedSection && (
-					<motion.div
-						initial="hidden"
-						animate="visible"
-						exit="exit"
-						variants={expandedViewVariants}
-						className="fixed top-0 left-0 inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
-						onClick={e => {
-							if (e.target === e.currentTarget)
-								setExpandedSection(null);
-						}}
+			<motion.div
+				initial={{ opacity: 0, y: 20 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ delay: 0.1 }}
+				className="space-y-4"
+			>
+				<div className="flex items-center gap-2 text-gray-800 dark:text-gray-200">
+					<Award className="w-5 h-5" />
+					<h3 className="text-lg font-semibold">
+						Leadership Positions
+					</h3>
+				</div>
+				<div className="ml-7">
+					<button
+						onClick={() => onSectionExpand('positions')}
+						className="text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 font-medium text-sm"
 					>
-						<motion.div
-							className="bg-white rounded-2xl p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto"
-							onClick={e => e.stopPropagation()}
-						>
-							<div className="flex justify-between items-center mb-6">
-								<h2 className="text-2xl font-bold">
-									{expandedSection === 'positions'
-										? 'Leadership Positions'
-										: 'Education History'}
-								</h2>
-								<button
-									onClick={() => setExpandedSection(null)}
-									className="text-gray-500 hover:text-gray-700"
-								>
-									<X className="w-6 h-6" />
-								</button>
-							</div>
+						View all {info.positions.length} positions
+					</button>
+				</div>
+			</motion.div>
 
-							<div className="space-y-6">
-								{expandedSection === 'positions'
-									? info.positions.map((position, index) => (
-											<div
-												key={index}
-												className="border-b border-gray-100 pb-4 last:border-0"
-											>
-												<p className="font-medium">
-													{position.title}
-												</p>
-												<p className="text-gray-600">
-													{position.organization}
-												</p>
-												<p className="text-sm text-gray-500">
-													{position.period}
-												</p>
-											</div>
-									  ))
-									: info.education.map((edu, index) => (
-											<div
-												key={index}
-												className="border-b border-gray-100 pb-4 last:border-0"
-											>
-												<p className="font-medium">
-													{edu.degree}
-												</p>
-												<p className="text-gray-600">
-													{edu.institution}
-												</p>
-												<p className="text-sm text-gray-500">
-													{edu.graduation}
-												</p>
-											</div>
-									  ))}
-							</div>
-						</motion.div>
-					</motion.div>
-				)}
-			</AnimatePresence>
-		</>
+			<motion.div
+				initial={{ opacity: 0, y: 20 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ delay: 0.2 }}
+				className="space-y-4"
+			>
+				<div className="flex items-center gap-2 text-gray-800 dark:text-gray-200">
+					<GraduationCap className="w-5 h-5" />
+					<h3 className="text-lg font-semibold">Education</h3>
+				</div>
+				<div className="ml-7">
+					{displayedEducation.map((edu, index) => (
+						<div key={index} className="mb-3">
+							<p className="font-medium dark:text-white">
+								{edu.degree}
+							</p>
+							<p className="text-gray-600 dark:text-gray-400">
+								{edu.institution}
+							</p>
+							<p className="text-sm text-gray-500 dark:text-gray-500">
+								{edu.graduation}
+							</p>
+						</div>
+					))}
+					{hasMoreEducation && (
+						<button
+							onClick={() => onSectionExpand('education')}
+							className="text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 font-medium text-sm"
+						>
+							See {info.education.length - 1} more
+						</button>
+					)}
+				</div>
+			</motion.div>
+		</div>
 	);
 }
+
+AdditionalInfo.Detail = function Detail({
+	section,
+}: {
+	section: 'positions' | 'education';
+}) {
+	const items = section === 'positions' ? info.positions : info.education;
+
+	return (
+		<div className="space-y-6">
+			<h2 className="text-2xl font-bold dark:text-white">
+				{section === 'positions'
+					? 'Leadership Positions'
+					: 'Education History'}
+			</h2>
+			<div className="space-y-6">
+				{items.map((item, index) => (
+					<div
+						key={index}
+						className="border-b border-gray-100 dark:border-gray-800 pb-4 last:border-0"
+					>
+						<p className="font-medium dark:text-white">
+							{section === 'positions'
+								? // @ts-ignore
+								  item.title
+								: (item as any).degree}
+						</p>
+						<p className="text-gray-600 dark:text-gray-400">
+							{section === 'positions'
+								? // @ts-ignore
+								  item.organization
+								: (item as any).institution}
+						</p>
+						<p className="text-sm text-gray-500 dark:text-gray-500">
+							{section === 'positions'
+								? // @ts-ignore
+								  item.period
+								: (item as any).graduation}
+						</p>
+					</div>
+				))}
+			</div>
+		</div>
+	);
+};

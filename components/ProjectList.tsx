@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Github, Globe, ExternalLink, MessageSquare } from 'lucide-react';
+import { Github, Globe, ExternalLink } from 'lucide-react';
 
 const projects = [
 	{
@@ -58,14 +58,14 @@ export function ProjectList({
 				<motion.button
 					key={project.id}
 					onClick={() => onProjectClick?.(project)}
-					className="block w-full text-left p-4 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors"
+					className="block w-full text-left p-4 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
 					whileHover={{ scale: 1.02 }}
 					whileTap={{ scale: 0.98 }}
 				>
-					<h3 className="font-semibold text-[1.1rem]">
+					<h3 className="font-semibold dark:text-white text-[1.1rem]">
 						{project.name}
 					</h3>
-					<p className="text-gray-600 text-[0.9rem]">
+					<p className="text-gray-600 dark:text-gray-400 text-[0.9rem]">
 						{project.shortDescription}
 					</p>
 				</motion.button>
@@ -78,17 +78,23 @@ ProjectList.Detail = function ProjectDetail({ project }: { project: any }) {
 	return (
 		<div className="space-y-6">
 			<div>
-				<h2 className="text-3xl font-bold mb-2">{project.name}</h2>
-				<p className="text-gray-600 text-lg">{project.description}</p>
+				<h2 className="text-3xl font-bold mb-2 dark:text-white">
+					{project.name}
+				</h2>
+				<p className="text-gray-600 dark:text-gray-400 text-lg">
+					{project.description}
+				</p>
 			</div>
 
 			<div>
-				<h3 className="text-xl font-semibold mb-2">Technologies</h3>
+				<h3 className="text-xl font-semibold mb-2 dark:text-white">
+					Technologies
+				</h3>
 				<div className="flex flex-wrap gap-2">
 					{project.technologies.map((tech: string) => (
 						<span
 							key={tech}
-							className="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm"
+							className="px-3 py-1 bg-orange-100 dark:bg-orange-900/50 text-orange-800 dark:text-orange-300 rounded-full text-sm"
 						>
 							{tech}
 						</span>
@@ -97,14 +103,16 @@ ProjectList.Detail = function ProjectDetail({ project }: { project: any }) {
 			</div>
 
 			<div>
-				<h3 className="text-xl font-semibold mb-2">Links</h3>
+				<h3 className="text-xl font-semibold mb-2 dark:text-white">
+					Links
+				</h3>
 				<div className="flex flex-wrap gap-4">
 					{project.links.github && (
 						<motion.a
 							href={project.links.github}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
+							className="flex items-center gap-2 px-4 py-2 bg-gray-900 dark:bg-gray-800 text-white rounded-lg hover:bg-gray-800 dark:hover:bg-gray-700 transition-colors"
 							whileHover={{ scale: 1.05 }}
 							whileTap={{ scale: 0.95 }}
 						>
@@ -125,32 +133,15 @@ ProjectList.Detail = function ProjectDetail({ project }: { project: any }) {
 							Live Site
 						</motion.a>
 					)}
-					{project.links.discord && (
-						<motion.a
-							href={project.links.discord}
-							target="_blank"
-							rel="noopener noreferrer"
-							className="flex items-center gap-2 px-4 py-2 bg-[#7289DA] text-white rounded-lg hover:bg-[#5b6eae] transition-colors"
-							whileHover={{ scale: 1.05 }}
-							whileTap={{ scale: 0.95 }}
-						>
-							<MessageSquare className="w-5 h-5" />
-							Discord Server
-						</motion.a>
-					)}
 					{Object.entries(project.links).map(([key, value]) => {
-						if (
-							key !== 'github' &&
-							key !== 'live' &&
-							key !== 'discord'
-						) {
+						if (key !== 'github' && key !== 'live') {
 							return (
 								<motion.a
 									key={key}
 									href={value as string}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-900 rounded-lg hover:bg-gray-200 transition-colors"
+									className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
 									whileHover={{ scale: 1.05 }}
 									whileTap={{ scale: 0.95 }}
 								>

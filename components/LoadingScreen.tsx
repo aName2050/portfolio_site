@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Code, Bot, Flame, Crown } from 'lucide-react';
+import { Code, Bot, Flame, Award } from 'lucide-react';
 
 const highlights = [
 	{
@@ -20,7 +20,7 @@ const highlights = [
 		description: 'Building the future',
 	},
 	{
-		icon: <Crown className="w-12 h-12" />,
+		icon: <Award className="w-12 h-12" />,
 		title: 'Leadership',
 		description: 'Making an impact',
 	},

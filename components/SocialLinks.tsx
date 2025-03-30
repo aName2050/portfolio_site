@@ -6,7 +6,7 @@ import { Github, Instagram, Mail } from 'lucide-react';
 const socialLinks = [
 	{
 		icon: <Github className="w-6 h-6" />,
-		href: 'https://github.com/aname2050',
+		href: 'https://github.com/aName2050',
 		label: 'GitHub',
 	},
 	{
@@ -30,12 +30,12 @@ export function SocialLinks() {
 					href={link.href}
 					target="_blank"
 					rel="noopener noreferrer"
-					className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors"
+					className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
 					whileHover={{ scale: 1.05 }}
 					whileTap={{ scale: 0.95 }}
 				>
 					{link.icon}
-					<span>{link.label}</span>
+					<span className="dark:text-white">{link.label}</span>
 				</motion.a>
 			))}
 		</div>
