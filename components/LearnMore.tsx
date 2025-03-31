@@ -3,6 +3,29 @@
 import { motion } from 'framer-motion';
 import { FileText, MessageCircleHeart, Trophy, Wrench } from 'lucide-react';
 
+const experience = [
+	{
+		title: 'Programmer',
+		organization: 'OGHS Robotics (FRC Team #10059)',
+		period: '2024 - 2025',
+		startDate: '2024-10-02',
+	},
+	{
+		title: 'IT Specialist',
+		organization: 'Advanced Science Research Club (OGHS ASR)',
+		period: '2025 - Present',
+		startDate: '2025-01-01',
+	},
+];
+
+const achievements = [
+	{
+		title: 'Gracious Professionalism Award',
+		event: 'FRC SVR 2025 Reefscape presented by HaaS',
+		date: '2024-10-02',
+	},
+];
+
 export function LearnMore({
 	onSectionExpand,
 }: {

@@ -15,13 +15,10 @@ export default function Home() {
 	const [selectedProject, setSelectedProject] = useState(null);
 	const [isLoading, setIsLoading] = useState(true);
 	const [expandedSection, setExpandedSection] = useState<
-		| 'positions'
-		| 'education'
-		| 'experience'
-		| 'achievements'
-		| 'testimonials'
-		| 'devlog'
-		| null
+		'positions' | 'education' | null
+	>(null);
+	const [selectedInfo, setSelectedInfo] = useState<
+		'experience' | 'achievements' | 'testimonials' | 'devlog' | null
 	>(null);
 
 	useEffect(() => {
@@ -111,12 +108,24 @@ export default function Home() {
 										← Back
 									</button>
 									<AdditionalInfo.Detail
-										section={
-											expandedSection as
-												| 'positions'
-												| 'education'
-										}
+										section={expandedSection}
 									/>
+								</motion.div>
+							) : selectedInfo ? (
+								<motion.div
+									key="info-detail"
+									initial={{ opacity: 0, scale: 0.9 }}
+									animate={{ opacity: 1, scale: 1 }}
+									exit={{ opacity: 0, scale: 0.9 }}
+									className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-8 max-w-5xl w-full"
+								>
+									<button
+										onClick={() => setSelectedInfo(null)}
+										className="mb-6 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+									>
+										← Back
+									</button>
+									<LearnMore.Detail section={selectedInfo} />
 								</motion.div>
 							) : (
 								<motion.div
@@ -177,7 +186,7 @@ export default function Home() {
 											</h2>
 											<LearnMore
 												onSectionExpand={
-													setExpandedSection
+													setSelectedInfo
 												}
 											/>
 										</div>
