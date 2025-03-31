@@ -6,7 +6,7 @@ import { Code, Bot, Flame, Award } from 'lucide-react';
 const highlights = [
 	{
 		icon: <Bot className="w-12 h-12" />,
-		title: 'FIRST Robotics',
+		title: 'FIRST Robotics Competition',
 		description: 'Competing in innovation',
 	},
 	{

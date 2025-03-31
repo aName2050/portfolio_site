@@ -8,12 +8,20 @@ import { AdditionalInfo } from '@/components/AdditionalInfo';
 import { LoadingScreen } from '@/components/LoadingScreen';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { useState, useEffect } from 'react';
+import { MessageCircleHeartIcon, Trophy, Wrench } from 'lucide-react';
+import { LearnMore } from '@/components/LearnMore';
 
 export default function Home() {
 	const [selectedProject, setSelectedProject] = useState(null);
 	const [isLoading, setIsLoading] = useState(true);
 	const [expandedSection, setExpandedSection] = useState<
-		'positions' | 'education' | null
+		| 'positions'
+		| 'education'
+		| 'experience'
+		| 'achievements'
+		| 'testimonials'
+		| 'devlog'
+		| null
 	>(null);
 
 	useEffect(() => {
@@ -103,7 +111,11 @@ export default function Home() {
 										← Back
 									</button>
 									<AdditionalInfo.Detail
-										section={expandedSection}
+										section={
+											expandedSection as
+												| 'positions'
+												| 'education'
+										}
 									/>
 								</motion.div>
 							) : (
@@ -157,6 +169,17 @@ export default function Home() {
 												Connect with me
 											</h2>
 											<SocialLinks />
+										</div>
+
+										<div className="space-y-4">
+											<h2 className="text-2xl font-semibold dark:text-white">
+												Learn more about me
+											</h2>
+											<LearnMore
+												onSectionExpand={
+													setExpandedSection
+												}
+											/>
 										</div>
 
 										<div className="space-y-4">
