@@ -3,7 +3,7 @@
 const achievements = [
 	{
 		title: 'Gracious Professionalism Pin',
-		event: 'FRC SVR 2025 Reefscape presented by HaaS',
+		event: 'FRC SVR 2025 Reefscape presented by Haas',
 		date: '2025-03-16',
 	},
 ].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
