@@ -13,12 +13,12 @@ import { LearnMore } from '@/components/LearnMore';
 
 export default function Home() {
 	const [selectedProject, setSelectedProject] = useState(null);
-	const [isLoading, setIsLoading] = useState(true);
+	const [isLoading, setIsLoading] = useState(false); // set to false to bypass loading screen
 	const [expandedSection, setExpandedSection] = useState<
 		'positions' | 'education' | null
 	>(null);
 	const [selectedInfo, setSelectedInfo] = useState<
-		'experience' | 'achievements' | 'testimonials' | 'devlog' | null
+		'experience' | 'achievements' | 'testimonials' | null
 	>(null);
 
 	useEffect(() => {
