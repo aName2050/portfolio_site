@@ -21,7 +21,9 @@ export function Achievements() {
 						{item.event}
 					</p>
 					<p className="text-sm text-gray-500 dark:text-gray-500">
-						{new Date(item.date).toLocaleDateString()}
+						{new Intl.DateTimeFormat('en-US', {
+							timeZone: 'UTC',
+						}).format(new Date(item.date))}
 					</p>
 				</div>
 			))}
