@@ -3,21 +3,9 @@
 const testimonials = [
 	{
 		name: 'John Doe',
-		note: 'Teacher at OGHS',
-		testimonial: 'An amazing student',
-		date: '2024-03-16',
-	},
-	{
-		name: 'Jane Doe',
-		note: 'FRC Mentor for OGHS',
-		testimonial: 'Leads the team very well',
-		date: '2025-01-16',
-	},
-	{
-		name: 'Bob Doe',
-		note: 'Cross country coach at OGHS',
-		testimonial: 'A promising athlete',
-		date: '2025-03-16',
+		note: 'A cool person',
+		testimonial: 'Hello world!',
+		date: '1970-01-01',
 	},
 ].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 

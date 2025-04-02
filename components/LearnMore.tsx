@@ -64,7 +64,7 @@ LearnMore.Detail = function Detail({
 }) {
 	return (
 		<div className="space-y-6">
-			<h2 className="text-3x1 font-bold dark:text-white">
+			<h2 className="text-3xl font-bold dark:text-white">
 				{section == 'experience'
 					? 'Experience'
 					: section == 'achievements'
