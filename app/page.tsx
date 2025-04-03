@@ -13,7 +13,7 @@ import { LearnMore } from '@/components/LearnMore';
 
 export default function Home() {
 	const [selectedProject, setSelectedProject] = useState(null);
-	const [isLoading, setIsLoading] = useState(false); // set to false to bypass loading screen
+	const [isLoading, setIsLoading] = useState(true); // set to false to bypass loading screen
 	const [expandedSection, setExpandedSection] = useState<
 		'positions' | 'education' | null
 	>(null);
