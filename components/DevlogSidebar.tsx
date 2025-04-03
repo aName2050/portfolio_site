@@ -17,17 +17,17 @@ export function DevlogSidebar({
 	onPostSelect,
 }: DevlogSidebarProps) {
 	return (
-		<div className="bg-card rounded-lg shadow-lg p-4">
+		<div className="bg-card rounded-lg shadow-lg p-4 ">
 			<h2 className="text-xl font-bold mb-4 text-card-foreground">
 				Devlog
 			</h2>
 			<ScrollArea className="h-[calc(100vh-12rem)]">
-				<div className="space-y-2">
+				<div className="space-y-2 flex items-center flex-wrap">
 					{posts.map(post => (
 						<motion.button
 							key={post.slug}
 							onClick={() => onPostSelect(post)}
-							className={`w-full text-left p-3 rounded-md transition-colors ${
+							className={`w-[90%] text-left p-3 rounded-[16px] transition-colors ${
 								selectedPost?.slug === post.slug
 									? 'bg-orange-500 text-white'
 									: 'hover:bg-accent text-card-foreground'
