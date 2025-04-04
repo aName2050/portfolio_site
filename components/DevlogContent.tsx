@@ -61,7 +61,17 @@ export function DevlogContent({ post }: DevlogContentProps) {
 	const scrollToSection = (id: string) => {
 		const element = document.getElementById(id);
 		if (element) {
-			element.scrollIntoView({ behavior: 'smooth' });
+			const offset = 50;
+			const elementPosition =
+				element.getBoundingClientRect().top + window.scrollY;
+			const offsetPosition = elementPosition - offset;
+
+			window.scrollTo({
+				top: offsetPosition,
+				behavior: 'smooth',
+			});
+
+			setActiveSection(id);
 		}
 	};
 
@@ -78,7 +88,9 @@ export function DevlogContent({ post }: DevlogContentProps) {
 						{post.title}
 					</h1>
 					<p className="text-muted-foreground mb-6">
-						{format(new Date(post.date), 'MMMM d, yyyy')}
+						{new Intl.DateTimeFormat('en-US', {
+							timeZone: 'UTC',
+						}).format(new Date(post.date))}
 					</p>
 					<div className="prose prose-orange dark:prose-invert max-w-none">
 						<Markdown>{post.content}</Markdown>
@@ -90,8 +102,8 @@ export function DevlogContent({ post }: DevlogContentProps) {
 						<h3 className="text-lg font-semibold mb-4 text-card-foreground">
 							Table of Contents
 						</h3>
-						<ScrollArea className="h-[calc(100vh-16rem)]">
-							<nav className="space-y-2">
+						<ScrollArea className="h-[calc(100vh-10rem)]">
+							<nav className="space-y-4">
 								{toc.map(item => (
 									<button
 										key={item.id}
@@ -105,6 +117,7 @@ export function DevlogContent({ post }: DevlogContentProps) {
 											paddingLeft: `${
 												(item.level - 1) * 1
 											}rem`,
+											marginBottom: '1rem',
 										}}
 									>
 										{item.title}

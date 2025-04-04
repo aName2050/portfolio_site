@@ -22,12 +22,12 @@ export function DevlogSidebar({
 				Devlog
 			</h2>
 			<ScrollArea className="h-[calc(100vh-12rem)]">
-				<div className="space-y-2 flex items-center flex-wrap">
+				<div className="space-y-4 flex items-center flex-wrap">
 					{posts.map(post => (
 						<motion.button
 							key={post.slug}
 							onClick={() => onPostSelect(post)}
-							className={`w-[90%] text-left p-3 rounded-[16px] transition-colors ${
+							className={`w-[90%] text-left p-3 rounded-[16px] transition-colors ml-[2%] ${
 								selectedPost?.slug === post.slug
 									? 'bg-orange-500 text-white'
 									: 'hover:bg-accent text-card-foreground'
@@ -37,7 +37,9 @@ export function DevlogSidebar({
 						>
 							<h3 className="font-medium">{post.title}</h3>
 							<p className="text-sm opacity-80">
-								{format(new Date(post.date), 'MMMM d, yyyy')}
+								{new Intl.DateTimeFormat('en-US', {
+									timeZone: 'UTC',
+								}).format(new Date(post.date))}
 							</p>
 						</motion.button>
 					))}

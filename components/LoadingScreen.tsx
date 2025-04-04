@@ -28,8 +28,8 @@ const highlights = [
 
 export function LoadingScreen() {
 	return (
-		<div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
-			<div className="w-full max-w-2xl">
+		<div className="fixed inset-0 bg-black z-50 flex items-center justify-center px-8 sm:px-0">
+			<div className="w-full max-w-2xl sm:max-w-xs">
 				{highlights.map((highlight, index) => (
 					<motion.div
 						key={index}

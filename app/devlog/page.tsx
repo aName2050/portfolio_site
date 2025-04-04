@@ -6,6 +6,7 @@ import { Post } from '@/lib/types';
 import { DevlogSidebar } from '@/components/DevlogSidebar';
 import { DevlogContent } from '@/components/DevlogContent';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { DevlogFooter } from '@/components/DevlogFooter';
 
 export default function DevlogPage() {
 	const [posts, setPosts] = useState<Post[]>([]);
@@ -56,6 +57,9 @@ export default function DevlogPage() {
 						)}
 					</AnimatePresence>
 				</motion.div>
+			</div>
+			<div className="container mx-auto px-4">
+				<DevlogFooter />
 			</div>
 			<ThemeToggle />
 		</div>
