@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Github, Twitter, Linkedin } from 'lucide-react';
+import { Github, Mail, Instagram } from 'lucide-react';
 
 export function DevlogFooter() {
 	const currentYear = new Date().getFullYear();
@@ -38,7 +38,7 @@ export function DevlogFooter() {
 						whileHover={{ scale: 1.1 }}
 						whileTap={{ scale: 0.9 }}
 					>
-						<Twitter className="h-5 w-5" />
+						<Instagram className="h-5 w-5" />
 					</motion.a>
 					<motion.a
 						href="mailto:shafaeebardia@gmail.com"
@@ -48,7 +48,7 @@ export function DevlogFooter() {
 						whileHover={{ scale: 1.1 }}
 						whileTap={{ scale: 0.9 }}
 					>
-						<Linkedin className="h-5 w-5" />
+						<Mail className="h-5 w-5" />
 					</motion.a>
 				</div>
 			</div>

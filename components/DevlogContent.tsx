@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import Markdown from 'markdown-to-jsx';
-import { format } from 'date-fns';
 import { Post } from '@/lib/types';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
@@ -48,7 +47,7 @@ export function DevlogContent({ post }: DevlogContentProps) {
 					}
 				});
 			},
-			{ threshold: 0.5 }
+			{ threshold: 0.9 }
 		);
 
 		const headers =
@@ -71,7 +70,9 @@ export function DevlogContent({ post }: DevlogContentProps) {
 				behavior: 'smooth',
 			});
 
-			setActiveSection(id);
+			setTimeout(() => {
+				setActiveSection(id);
+			}, 500);
 		}
 	};
 
