@@ -20,6 +20,7 @@ export function DevlogContent({ post }: DevlogContentProps) {
 	const contentRef = useRef<HTMLDivElement>(null);
 	const [toc, setToc] = useState<TableOfContentsItem[]>([]);
 	const [activeSection, setActiveSection] = useState<string>('');
+	const [isContentLongEnough, setIsContentLongEnough] = useState(true);
 
 	useEffect(() => {
 		if (contentRef.current) {
@@ -39,22 +40,50 @@ export function DevlogContent({ post }: DevlogContentProps) {
 	}, [post]);
 
 	useEffect(() => {
-		const observer = new IntersectionObserver(
-			entries => {
-				entries.forEach(entry => {
-					if (entry.isIntersecting) {
-						setActiveSection(entry.target.id);
-					}
-				});
-			},
-			{ threshold: 0.9 }
-		);
+		if (!contentRef.current) return;
 
-		const headers =
-			contentRef.current?.querySelectorAll('h1, h2, h3') || [];
-		headers.forEach(header => observer.observe(header));
+		const observer = new ResizeObserver(entries => {
+			for (let entry of entries) {
+				const height = entry.contentRect.height;
+				setIsContentLongEnough(height > window.innerHeight * 100);
+			}
+		});
+
+		observer.observe(contentRef.current);
 
 		return () => observer.disconnect();
+	}, [post]);
+
+	useEffect(() => {
+		if (!isContentLongEnough) {
+			if (toc.length > 0) setActiveSection(toc[0].id);
+			return;
+		}
+
+		const handleScroll = () => {
+			if (!contentRef.current) return;
+
+			const sections = Array.from(
+				contentRef.current.querySelectorAll('h1, h2, h3')
+			) as HTMLElement[];
+
+			const scrollPosition = window.scrollY + 200;
+
+			let currentSectionID = '';
+			for (let i = 0; i < sections.length; i++) {
+				const section = sections[i];
+				if (section.offsetTop <= scrollPosition) {
+					currentSectionID = section.id;
+				} else break;
+			}
+
+			setActiveSection(currentSectionID);
+		};
+
+		handleScroll();
+		window.addEventListener('scroll', handleScroll);
+
+		return () => window.removeEventListener('scroll', handleScroll);
 	}, [post]);
 
 	const scrollToSection = (id: string) => {
@@ -101,7 +130,7 @@ export function DevlogContent({ post }: DevlogContentProps) {
 				<div className="lg:block hidden">
 					<div className="sticky top-8">
 						<h3 className="text-lg font-semibold mb-4 text-card-foreground">
-							Table of Contents
+							On this page
 						</h3>
 						<ScrollArea className="h-[calc(100vh-10rem)]">
 							<nav className="space-y-4">
