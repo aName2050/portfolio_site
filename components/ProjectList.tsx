@@ -45,6 +45,16 @@ const projects = [
 			github: 'https://github.com/aname2050/typescript-neural-network',
 		},
 	},
+	{
+		id: 4,
+		name: 'Wi-Fi RC Car',
+		shortDescription:
+			'A RC Car powered by a Raspberry Pi Pico W over Wi-Fi',
+		description:
+			'A RC Car powered by a Raspberry Pi Pico W and Wukong2040 breakout board to power 4 DC motors, the drivetrain.',
+		technologies: ['MicroPython', 'Raspberry Pi Pico W'],
+		links: {},
+	},
 ];
 
 export function ProjectList({

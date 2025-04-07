@@ -1,6 +1,7 @@
 ---
 title: 'Getting Started with Development'
 date: '2024-03-20'
+author: 'Bardia Shafaee'
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nulla facilisi. Pellentesque in ipsum id orci porta dapibus. Curabitur aliquet quam id dui posuere blandit.

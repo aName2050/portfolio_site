@@ -9,12 +9,12 @@ const info = {
 	// 	company: 'company',
 	// },
 	positions: [
-		// {
-		// 	title: 'President && Programming Lead',
-		// 	organization: 'OGHS Robotics (FRC Team #10059)',
-		// 	period: '2025 - Present',
-		// 	startDate: '2025-04-02',
-		// },
+		{
+			title: 'President && Programming Lead',
+			organization: 'OGHS Robotics (FRC Team #10059)',
+			period: '2025 - Present',
+			startDate: '2025-04-02',
+		},
 		// {
 		// 	title: 'Team Captain',
 		// 	organization: 'OGHS Cross Country',

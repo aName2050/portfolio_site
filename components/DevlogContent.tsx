@@ -20,7 +20,6 @@ export function DevlogContent({ post }: DevlogContentProps) {
 	const contentRef = useRef<HTMLDivElement>(null);
 	const [toc, setToc] = useState<TableOfContentsItem[]>([]);
 	const [activeSection, setActiveSection] = useState<string>('');
-	const [isContentLongEnough, setIsContentLongEnough] = useState(true);
 
 	useEffect(() => {
 		if (contentRef.current) {
@@ -40,26 +39,6 @@ export function DevlogContent({ post }: DevlogContentProps) {
 	}, [post]);
 
 	useEffect(() => {
-		if (!contentRef.current) return;
-
-		const observer = new ResizeObserver(entries => {
-			for (let entry of entries) {
-				const height = entry.contentRect.height;
-				setIsContentLongEnough(height > window.innerHeight * 100);
-			}
-		});
-
-		observer.observe(contentRef.current);
-
-		return () => observer.disconnect();
-	}, [post]);
-
-	useEffect(() => {
-		if (!isContentLongEnough) {
-			if (toc.length > 0) setActiveSection(toc[0].id);
-			return;
-		}
-
 		const handleScroll = () => {
 			if (!contentRef.current) return;
 
@@ -120,7 +99,8 @@ export function DevlogContent({ post }: DevlogContentProps) {
 					<p className="text-muted-foreground mb-6">
 						{new Intl.DateTimeFormat('en-US', {
 							timeZone: 'UTC',
-						}).format(new Date(post.date))}
+						}).format(new Date(post.date))}{' '}
+						| {post.author}
 					</p>
 					<div className="prose prose-orange dark:prose-invert max-w-none">
 						<Markdown>{post.content}</Markdown>

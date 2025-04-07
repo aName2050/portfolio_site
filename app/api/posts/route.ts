@@ -24,6 +24,7 @@ async function getAllPosts(): Promise<Post[]> {
 				slug,
 				title: data.title,
 				date: data.date,
+				author: data.author,
 				content,
 			};
 		})
