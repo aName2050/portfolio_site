@@ -10,20 +10,11 @@ export const metadata: Metadata = {
 	description: "Bardia Shafaee's Portfolio",
 };
 
-export default function RootLayout({
-	children,
-}: {
-	children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<body className={inter.className}>
-				<ThemeProvider
-					attribute="class"
-					defaultTheme="light"
-					enableSystem={false}
-					disableTransitionOnChange
-				>
+				<ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
 					{children}
 				</ThemeProvider>
 			</body>
