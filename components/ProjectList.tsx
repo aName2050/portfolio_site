@@ -55,11 +55,14 @@ const projects = [
 ];
 
 export function ProjectList({ onProjectClick }: { onProjectClick?: (project: any) => void }) {
-	// TODO: update UI
+	const [viewMode, setViewMode] = useState<'preview' | 'full'>('preview');
+
+	const isPreview = viewMode === 'preview';
+	const visibleProjects = isPreview ? projects.slice(0, 3) : projects;
 
 	return (
 		<div className="space-y-4">
-			{projects.map(project => (
+			{visibleProjects.map(project => (
 				<motion.button
 					key={project.id}
 					onClick={() => onProjectClick?.(project)}
@@ -71,6 +74,19 @@ export function ProjectList({ onProjectClick }: { onProjectClick?: (project: any
 					<p className="text-gray-600 dark:text-gray-400 text-[0.9rem]">{project.shortDescription}</p>
 				</motion.button>
 			))}
+
+			<div className="ml-1">
+				{isPreview && projects.length > 3 && (
+					<button onClick={() => setViewMode('full')} className="text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 font-medium text-sm">
+						View all {projects.length} projects
+					</button>
+				)}
+				{!isPreview && (
+					<button onClick={() => setViewMode('preview')} className="text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 font-medium text-sm">
+						Show less
+					</button>
+				)}
+			</div>
 		</div>
 	);
 }
