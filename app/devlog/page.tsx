@@ -3,10 +3,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Post } from '@/lib/types';
-import { DevlogSidebar } from '@/components/DevlogSidebar';
-import { DevlogContent } from '@/components/DevlogContent';
-import { ThemeToggle } from '@/components/ThemeToggle';
-import { DevlogFooter } from '@/components/DevlogFooter';
 
 export default function DevlogPage() {
 	const [posts, setPosts] = useState<Post[]>([]);
@@ -35,33 +31,5 @@ export default function DevlogPage() {
 		);
 	}
 
-	return (
-		<div className="min-h-screen bg-background">
-			<div className="container mx-auto px-4 py-8">
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 1, y: 0 }}
-					className="grid grid-cols-1 md:grid-cols-[300px,1fr] gap-8"
-				>
-					<DevlogSidebar
-						posts={posts}
-						selectedPost={selectedPost}
-						onPostSelect={setSelectedPost}
-					/>
-					<AnimatePresence mode="wait">
-						{selectedPost && (
-							<DevlogContent
-								key={selectedPost.slug}
-								post={selectedPost}
-							/>
-						)}
-					</AnimatePresence>
-				</motion.div>
-			</div>
-			<div className="container mx-auto px-4">
-				<DevlogFooter />
-			</div>
-			<ThemeToggle />
-		</div>
-	);
+	return <div className="min-h-screen bg-background">Coming soon...</div>;
 }
