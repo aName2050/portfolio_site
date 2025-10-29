@@ -17,7 +17,11 @@ export default function Home() {
 
 	return (
 		<>
-			<div className="bg-slate-300/30">Hello world!</div>
+			<div className="flex h-screen items-center justify-center">
+				<div className="bg-white/20 backdrop-blur-sm border border-white/20 rounded-3xl shadow-lg p-6">
+					<div className="h-[25rem] w-[50rem]"></div>
+				</div>
+			</div>
 		</>
 	);
 }
