@@ -1,8 +1,8 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Award, GraduationCap, HomeIcon } from 'lucide-react';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
 export default function Home() {
@@ -22,20 +22,17 @@ export default function Home() {
 		awards: 'Awards',
 		education: 'Education',
 	};
-	let selected: string = sections.overview;
 
-	function setSection(section: string): void {
-		selected = section;
-	}
+	const [selected, setSection] = useState<string>(sections.overview);
 
 	return (
 		<>
 			<div className="flex h-screen items-center justify-center">
 				<div className="bg-slate-300/20 backdrop-blur-sm border border-white/60 rounded-[3rem] shadow-lg">
-					<div className="relative h-[40rem] w-[50rem]">
-						<div className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm border border-white/0 rounded-full shawdow-lg">
+					<div className="relative h-[75dvh] w-[75dvw] max-h-[40rem] max-w-[60rem]">
+						<div className="absolute top-[1dvh] right-[1dvw] bg-slate-400/20 backdrop-blur-sm border border-white/60 rounded-full shawdow-lg shawdow-black">
 							<button
-								className="p-4"
+								className="p-4 m-1 rounded-full hover:bg-white/40 transition-colors"
 								onClick={() => setSection(sections.overview)}
 							>
 								<HomeIcon
@@ -44,13 +41,13 @@ export default function Home() {
 										selected == sections.overview
 											? 'text-white'
 											: 'text-slate-400',
-										'hover:text-blue-900 transition-colors m-0"'
+										'transition-colors m-0"'
 									)}
 								/>
 							</button>
 							<button
-								className="p-4"
-								onClick={() => setSection(sections.overview)}
+								className="p-4 m-1 rounded-full hover:bg-white/40 transition-colors"
+								onClick={() => setSection(sections.awards)}
 							>
 								<Award
 									size={32}
@@ -58,13 +55,13 @@ export default function Home() {
 										selected == sections.awards
 											? 'text-white'
 											: 'text-slate-400',
-										'hover:text-blue-900 transition-colors m-0"'
+										'transition-colors m-0"'
 									)}
 								/>
 							</button>
 							<button
-								className="p-4"
-								onClick={() => setSection(sections.overview)}
+								className="p-4 m-1 rounded-full hover:bg-white/40 transition-colors"
+								onClick={() => setSection(sections.education)}
 							>
 								<GraduationCap
 									size={32}
@@ -72,19 +69,27 @@ export default function Home() {
 										selected == sections.education
 											? 'text-white'
 											: 'text-slate-400',
-										'hover:text-blue-900 transition-colors m-0"'
+										'transition-colors m-0"'
 									)}
 								/>
 							</button>
 						</div>
 						<div className="py-16"></div>
-						<div className="grid grid-cols-3 gap-x-2 gap-y-12 place-items-center">
+						<div className="grid grid-cols-3 gap-x-2 gap-y-12 place-items-center border border-red-600 p-4 m-4 my-[-1rem]">
 							{selected == sections.overview ? (
 								<>
-									<div>Overview</div>
-									<div>Item 2</div>
-									<div>Item 3</div>
-									<div>Item 4</div>
+									<div>
+										<Image
+											src={
+												'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-z73z2u5P-oH2gIqdZjngBE-qvNgkwLDXYw&s'
+											}
+											alt="profile pic"
+											width={150}
+											height={150}
+											layout="responsive"
+											className="rounded-full"
+										/>
+									</div>
 								</>
 							) : selected == sections.awards ? (
 								<>
