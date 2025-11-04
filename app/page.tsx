@@ -1,9 +1,35 @@
 'use client';
 
+import Overview from '@/components/sections/Overview';
 import { cn } from '@/lib/utils';
-import { Award, GraduationCap, HomeIcon } from 'lucide-react';
+import { AwardIcon, BriefcaseBusinessIcon, CpuIcon, GraduationCapIcon, HomeIcon, MoonIcon, SunIcon } from 'lucide-react';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useTheme } from 'next-themes';
+
+const sections = [
+	{
+		name: 'Overview',
+		icon: HomeIcon,
+	},
+	{
+		name: 'Projects',
+		icon: CpuIcon,
+	},
+	{
+		name: 'Awards',
+		icon: AwardIcon,
+	},
+	{
+		name: 'Experience',
+		icon: BriefcaseBusinessIcon,
+	},
+	{
+		name: 'Education',
+		icon: GraduationCapIcon,
+	},
+];
 
 export default function Home() {
 	useEffect(() => {
@@ -17,65 +43,47 @@ export default function Home() {
 		};
 	}, []);
 
-	const sections = {
-		overview: 'Overview',
-		awards: 'Awards',
-		education: 'Education',
-	};
+	const [selected, setSection] = useState<string>(sections[0].name);
 
-	const [selected, setSection] = useState<string>(sections.overview);
+	const { theme, setTheme } = useTheme();
+
+	const renderSection = () => {
+		switch (selected) {
+			case sections[0].name:
+				return <Overview />;
+			case sections[1].name:
+			// return <Awards />;
+			case sections[2].name:
+			// return <Education />;
+		}
+	};
 
 	return (
 		<>
 			<div className="flex h-screen items-center justify-center">
-				<div className="bg-black/20 backdrop-blur-sm border border-white/60 rounded-[3rem] shadow-lg">
+				<div className="dark:bg-black/30 bg-slate-300/30 backdrop-blur-sm border border-white/60 rounded-[3rem] shadow-lg">
 					<div className="relative h-[75dvh] w-[75dvw] max-h-[50rem] max-w-[60rem]">
-						<div className="absolute top-4 right-4 bg-black/5 backdrop-blur-sm border border-white/60 rounded-full shadow-lg">
-							<button className="p-4 m-1 rounded-full hover:bg-white/15 transition-colors" onClick={() => setSection(sections.overview)}>
-								<HomeIcon size={32} className={cn(selected == sections.overview ? 'text-white' : 'text-gray-500', 'transition-colors m-0"')} />
-							</button>
-							<button className="p-4 m-1 rounded-full hover:bg-white/15 transition-colors" onClick={() => setSection(sections.awards)}>
-								<Award size={32} className={cn(selected == sections.awards ? 'text-white' : 'text-gray-500', 'transition-colors m-0"')} />
-							</button>
-							<button className="p-4 m-1 rounded-full hover:bg-white/15 transition-colors" onClick={() => setSection(sections.education)}>
-								<GraduationCap size={32} className={cn(selected == sections.education ? 'text-white' : 'text-gray-500', 'transition-colors m-0"')} />
-							</button>
-						</div>
+						<nav className="absolute top-4 right-4">
+							<div className=" dark:bg-black/5 bg-slate-300/5 backdrop-blur-sm border border-white/60 rounded-full shadow-lg inline-block mr-4">
+								{sections.map(section => (
+									<button key={section.name} className="p-4 m-1 rounded-full dark:hover:bg-white/15 hover:bg-black/10 transition-colors" onClick={() => setSection(section.name)}>
+										<section.icon size={32} className={cn(selected == section.name ? 'text-black dark:text-white' : 'dark:text-gray-400 text-gray-400', 'transition-colors m-0"')} />
+									</button>
+								))}
+							</div>
+							<div className="dark:bg-black/5 bg-slate-300/5 backdrop-blur-sm border border-white/60 rounded-full shadow-lg inline-block">
+								<button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="p-4 m-1 rounded-full dark:hover:bg-white/15 hover:bg-black/10 transition-colors text-yellow-600 dark:text-blue-900">
+									{theme !== 'dark' ? <SunIcon size={32} /> : <MoonIcon size={32} />}
+								</button>
+							</div>
+						</nav>
 						<div className="py-16"></div>
 						<div className="grid grid-cols-3 gap-x-2 gap-y-12 place-items-center border border-red-600 p-4 m-4 my-[-1rem]">
-							{selected == sections.overview ? (
-								<>
-									<div>
-										<Image
-											src={'https://images.unsplash.com/photo-1639930605762-6dbb721bd568?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=830'}
-											alt="profile pic"
-											width={150}
-											height={150}
-											layout="responsive"
-											className="rounded-full object-cover aspect-square"
-										/>
-										<h1>Bardia Shafaee</h1>
-										<h3>
-											Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti consequuntur aut unde, ab saepe debitis, hic tempore, impedit dolore enim aspernatur facilis. Rerum, architecto aspernatur! Repudiandae
-											mollitia ab error dignissimos.
-										</h3>
-									</div>
-								</>
-							) : selected == sections.awards ? (
-								<>
-									<div>Awards</div>
-									<div>Item 2</div>
-									<div>Item 3</div>
-									<div>Item 4</div>
-								</>
-							) : (
-								<>
-									<div>Education</div>
-									<div>Item 2</div>
-									<div>Item 3</div>
-									<div>Item 4</div>
-								</>
-							)}
+							<AnimatePresence mode="wait">
+								<motion.div key={selected} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.5 }}>
+									{renderSection()}
+								</motion.div>
+							</AnimatePresence>
 						</div>
 					</div>
 				</div>
