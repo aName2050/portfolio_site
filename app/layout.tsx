@@ -1,7 +1,7 @@
+import { ThemeProvider } from '@/components/ThemeProvider';
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { ThemeProvider } from 'next-themes';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -10,12 +10,23 @@ export const metadata: Metadata = {
 	description: "Bardia Shafaee's Portfolio",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+	children,
+}: {
+	children: React.ReactNode;
+}) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<ThemeProvider attribute="class" disableTransitionOnChange>
-				<body className={inter.className}>{children}</body>
-			</ThemeProvider>
+			<body className={inter.className}>
+				<ThemeProvider
+					attribute="class" // Adds 'dark' or 'light' class to the <html> tag
+					defaultTheme="system" // Default theme, e.g., 'system', 'dark', 'light'
+					enableSystem // Enables system theme detection
+					disableTransitionOnChange // Prevents flash of unstyled content
+				>
+					{children}
+				</ThemeProvider>
+			</body>
 		</html>
 	);
 }

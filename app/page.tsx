@@ -2,7 +2,15 @@
 
 import Overview from '@/components/sections/Overview';
 import { cn } from '@/lib/utils';
-import { AwardIcon, BriefcaseBusinessIcon, CpuIcon, GraduationCapIcon, HomeIcon, MoonIcon, SunIcon } from 'lucide-react';
+import {
+	AwardIcon,
+	BriefcaseBusinessIcon,
+	CpuIcon,
+	GraduationCapIcon,
+	HomeIcon,
+	MoonIcon,
+	SunIcon,
+} from 'lucide-react';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -66,21 +74,50 @@ export default function Home() {
 						<nav className="absolute top-4 right-4">
 							<div className=" dark:bg-black/5 bg-slate-300/5 backdrop-blur-sm border border-white/60 rounded-full shadow-lg inline-block mr-4">
 								{sections.map(section => (
-									<button key={section.name} className="p-4 m-1 rounded-full dark:hover:bg-white/15 hover:bg-black/10 transition-colors" onClick={() => setSection(section.name)}>
-										<section.icon size={32} className={cn(selected == section.name ? 'text-black dark:text-white' : 'dark:text-gray-400 text-gray-400', 'transition-colors m-0"')} />
+									<button
+										key={section.name}
+										className="p-4 m-1 rounded-full dark:hover:bg-white/15 hover:bg-black/10 transition-colors"
+										onClick={() => setSection(section.name)}
+									>
+										<section.icon
+											size={32}
+											className={cn(
+												selected == section.name
+													? 'text-black dark:text-white'
+													: 'dark:text-gray-400 text-gray-500',
+												'transition-colors m-0"'
+											)}
+										/>
 									</button>
 								))}
 							</div>
 							<div className="dark:bg-black/5 bg-slate-300/5 backdrop-blur-sm border border-white/60 rounded-full shadow-lg inline-block">
-								<button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="p-4 m-1 rounded-full dark:hover:bg-white/15 hover:bg-black/10 transition-colors text-yellow-600 dark:text-blue-900">
-									{theme !== 'dark' ? <SunIcon size={32} /> : <MoonIcon size={32} />}
+								<button
+									onClick={() =>
+										setTheme(
+											theme === 'dark' ? 'light' : 'dark'
+										)
+									}
+									className="p-4 m-1 rounded-full dark:hover:bg-white/15 hover:bg-black/10 transition-colors text-yellow-300 dark:text-blue-900"
+								>
+									{theme !== 'dark' ? (
+										<SunIcon size={32} />
+									) : (
+										<MoonIcon size={32} />
+									)}
 								</button>
 							</div>
 						</nav>
 						<div className="py-16"></div>
-						<div className="grid grid-cols-3 gap-x-2 gap-y-12 place-items-center border border-red-600 p-4 m-4 my-[-1rem]">
+						<div className="grid grid-cols-3 gap-x-2 gap-y-12 place-items-center p-4 m-4 my-[-1rem]">
 							<AnimatePresence mode="wait">
-								<motion.div key={selected} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.5 }}>
+								<motion.div
+									key={selected}
+									initial={{ opacity: 0, y: 20 }}
+									animate={{ opacity: 1, y: 0 }}
+									exit={{ opacity: 0, y: -10 }}
+									transition={{ duration: 0.5 }}
+								>
 									{renderSection()}
 								</motion.div>
 							</AnimatePresence>
