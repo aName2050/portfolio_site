@@ -8,6 +8,7 @@ import {
 	CpuIcon,
 	GraduationCapIcon,
 	HomeIcon,
+	InfoIcon,
 	MoonIcon,
 	SunIcon,
 } from 'lucide-react';
@@ -124,6 +125,9 @@ export default function Home() {
 						</div>
 					</div>
 				</div>
+			</div>
+			<div className="dark:bg-black/30 bg-slate-300/30 backdrop-blur-sm border border-white/60 rounded-[3rem] shadow-lg fixed bottom-4 right-4 p-2">
+				<InfoIcon className="text-black dark:text-white" size={24} />
 			</div>
 		</>
 	);
