@@ -69,7 +69,7 @@ export default function Home() {
 
 	return (
 		<>
-			<div className="flex h-screen items-center justify-center">
+			<div className="flex h-screen items-center justify-center overflow-hidden">
 				<div className="dark:bg-black/30 bg-slate-300/30 backdrop-blur-sm border border-white/60 rounded-[3rem] shadow-lg">
 					<div className="relative h-[75dvh] w-[75dvw] max-h-[50rem] max-w-[60rem]">
 						<nav className="absolute top-4 right-4">
@@ -110,7 +110,7 @@ export default function Home() {
 							</div>
 						</nav>
 						<div className="py-16"></div>
-						<div className="grid grid-cols-3 gap-x-2 gap-y-12 place-items-center p-4 m-4 my-[-1rem]">
+						<div className="p-4 m-4 my-[-1rem] h-full">
 							<AnimatePresence mode="wait">
 								<motion.div
 									key={selected}
@@ -118,6 +118,7 @@ export default function Home() {
 									animate={{ opacity: 1, y: 0 }}
 									exit={{ opacity: 0, y: -10 }}
 									transition={{ duration: 0.5 }}
+									className="grid grid-cols-3 grid-rows-3 gap-x-2 gap-y-12 w-full place-items-center"
 								>
 									{renderSection()}
 								</motion.div>
@@ -126,7 +127,7 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
-			<div className="dark:bg-black/30 bg-slate-300/30 backdrop-blur-sm border border-white/60 rounded-[3rem] shadow-lg fixed bottom-4 right-4 p-2">
+			<div className="dark:bg-black/30 bg-slate-300/30 dark:hover:bg-white/15 hover:bg-black/10 transition-colors cursor-pointer backdrop-blur-sm border border-white/60 rounded-[3rem] shadow-lg fixed bottom-4 right-4 p-2">
 				<InfoIcon className="text-black dark:text-white" size={24} />
 			</div>
 		</>
