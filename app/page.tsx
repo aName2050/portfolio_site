@@ -10,6 +10,7 @@ import {
 	HomeIcon,
 	InfoIcon,
 	MoonIcon,
+	PiIcon,
 	SunIcon,
 } from 'lucide-react';
 import Image from 'next/image';
@@ -73,7 +74,10 @@ export default function Home() {
 				<div className="dark:bg-black/30 bg-slate-300/30 backdrop-blur-sm border border-white/60 rounded-[3rem] shadow-lg">
 					<div className="relative h-[75dvh] w-[75dvw] max-h-[50rem] max-w-[60rem]">
 						<nav className="absolute top-4 right-4">
-							<div className=" dark:bg-black/5 bg-slate-300/5 backdrop-blur-sm border border-white/60 rounded-full shadow-lg inline-block mr-4">
+							<div className="dark:bg-black/5 bg-slate-300/5 backdrop-blur-sm border border-white/60 rounded-full shadow-lg inline-block mr-4">
+								<p className="p-4 m-1">Home</p>
+							</div>
+							<div className="dark:bg-black/5 bg-slate-300/5 backdrop-blur-sm border border-white/60 rounded-full shadow-lg inline-block">
 								{sections.map(section => (
 									<button
 										key={section.name}
@@ -86,27 +90,11 @@ export default function Home() {
 												selected == section.name
 													? 'text-black dark:text-white'
 													: 'dark:text-gray-400 text-gray-500',
-												'transition-colors m-0"'
+												'transition-colors m-0"',
 											)}
 										/>
 									</button>
 								))}
-							</div>
-							<div className="dark:bg-black/5 bg-slate-300/5 backdrop-blur-sm border border-white/60 rounded-full shadow-lg inline-block">
-								<button
-									onClick={() =>
-										setTheme(
-											theme === 'dark' ? 'light' : 'dark'
-										)
-									}
-									className="p-4 m-1 rounded-full dark:hover:bg-white/15 hover:bg-black/10 transition-colors text-yellow-300 dark:text-blue-900"
-								>
-									{theme !== 'dark' ? (
-										<SunIcon size={32} />
-									) : (
-										<MoonIcon size={32} />
-									)}
-								</button>
 							</div>
 						</nav>
 						<div className="py-16"></div>
@@ -127,8 +115,23 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
-			<div className="dark:bg-black/30 bg-slate-300/30 dark:hover:bg-white/15 hover:bg-black/10 transition-colors cursor-pointer backdrop-blur-sm border border-white/60 rounded-[3rem] shadow-lg fixed bottom-4 right-4 p-2">
-				<InfoIcon className="text-black dark:text-white" size={24} />
+			<div className="flex items-center justify-center dark:bg-black/30 bg-slate-300/30 transition-colors backdrop-blur-sm border border-white/60 rounded-[3rem] shadow-lg fixed bottom-4 right-4">
+				<InfoIcon
+					className="text-black dark:text-white dark:hover:bg-white/15 hover:bg-black/20 cursor-pointer rounded-full m-2 transition-colors p-[0.125rem]"
+					size={32}
+				/>
+				<button
+					onClick={() =>
+						setTheme(theme === 'dark' ? 'light' : 'dark')
+					}
+					className="rounded-full dark:hover:bg-white/15 hover:bg-black/20 transition-colors text-yellow-300 dark:text-blue-900 m-2 p-1"
+				>
+					{theme !== 'dark' ? (
+						<SunIcon size={28} />
+					) : (
+						<MoonIcon size={28} />
+					)}
+				</button>
 			</div>
 		</>
 	);
