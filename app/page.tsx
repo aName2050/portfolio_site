@@ -118,16 +118,33 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
-			<div className="flex items-center justify-center dark:bg-black/30 bg-slate-300/30 transition-colors backdrop-blur-sm border border-white/60 rounded-[3rem] shadow-lg fixed bottom-4 right-4">
+			<div
+				className="
+					group flex items-center justify-end h-14 w-[6.7rem] has-[.info-trigger:hover]:w-[17rem]
+					dark:bg-black/30 bg-slate-300/30 backdrop-blur-sm border border-white/60 
+					rounded-[3rem] shadow-lg fixed bottom-4 right-4 
+					transition-all duration-500 ease-in-out overflow-hidden
+					"
+			>
+				<span
+					className="
+						opacity-0 whitespace-nowrap text-sm transition-opacity duration-300
+						group-has-[.info-trigger:hover]:opacity-100
+					"
+				>
+					v2.0.0 build 02262026g
+				</span>
+
 				<InfoIcon
-					className="text-black dark:text-white dark:hover:bg-white/15 hover:bg-black/20 cursor-pointer rounded-full m-2 transition-colors p-[0.125rem]"
+					className="info-trigger text-black dark:text-white cursor-pointer rounded-full m-2 transition-colors p-[0.125rem] flex-shrink-0"
 					size={32}
 				/>
+
 				<button
 					onClick={() =>
 						setTheme(theme === 'dark' ? 'light' : 'dark')
 					}
-					className="rounded-full dark:hover:bg-white/15 hover:bg-black/20 transition-colors text-yellow-300 dark:text-blue-900 m-2 p-1"
+					className="rounded-full dark:hover:bg-white/15 hover:bg-black/20 transition-colors text-yellow-300 dark:text-blue-900 m-2 p-1 flex-shrink-0"
 				>
 					{theme !== 'dark' ? (
 						<SunIcon size={28} />
