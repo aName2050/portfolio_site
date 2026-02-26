@@ -17,6 +17,7 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from 'next-themes';
+import Projects from '@/components/sections/Projects';
 
 const sections = [
 	{
@@ -62,7 +63,7 @@ export default function Home() {
 			case sections[0].name:
 				return <Overview />;
 			case sections[1].name:
-			// return <Awards />;
+				return <Projects />;
 			case sections[2].name:
 			// return <Education />;
 		}
@@ -73,9 +74,11 @@ export default function Home() {
 			<div className="flex h-screen items-center justify-center overflow-hidden">
 				<div className="dark:bg-black/30 bg-slate-300/30 backdrop-blur-sm border border-white/60 rounded-[3rem] shadow-lg">
 					<div className="relative h-[75dvh] w-[75dvw] max-h-[50rem] max-w-[60rem]">
-						<nav className="absolute top-4 right-4">
-							<div className="dark:bg-black/5 bg-slate-300/5 backdrop-blur-sm border border-white/60 rounded-full shadow-lg inline-block mr-4">
-								<p className="p-4 m-1">Home</p>
+						<nav className="absolute top-4 right-4 flex items-stretch">
+							<div className="flex items-center dark:bg-black/5 bg-slate-300/5 backdrop-blur-sm border border-white/60 rounded-full shadow-lg mr-4">
+								<p className="p-4 m-1 whitespace-nowrap">
+									{selected}
+								</p>
 							</div>
 							<div className="dark:bg-black/5 bg-slate-300/5 backdrop-blur-sm border border-white/60 rounded-full shadow-lg inline-block">
 								{sections.map(section => (
@@ -90,7 +93,7 @@ export default function Home() {
 												selected == section.name
 													? 'text-black dark:text-white'
 													: 'dark:text-gray-400 text-gray-500',
-												'transition-colors m-0"',
+												'transition-colors m-0"'
 											)}
 										/>
 									</button>
