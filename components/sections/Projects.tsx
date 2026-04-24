@@ -5,21 +5,28 @@ import { useState } from 'react';
 
 const projects: {
 	name: string;
+	description: string;
 	github: string;
 	start: number;
 }[] = [
 	{
 		name: 'RC Robot',
+		description:
+			'A remote-controlled robot built with Raspberry Pi and controlled through a web app powered by Next.js.',
 		github: 'https://example.com',
 		start: new Date('2026-08-01').getTime(),
 	},
 	{
 		name: 'Portfolio',
+		description:
+			'My personal portfolio website built with Next.js and Tailwind CSS.',
 		github: 'https://example.com',
 		start: new Date('2022-06-01').getTime(),
 	},
 	{
 		name: 'GigaScript',
+		description:
+			'A custom programming language designed to be similar to the English language.',
 		github: 'https://example.com',
 		start: new Date('2023-01-15').getTime(),
 	},
@@ -30,18 +37,15 @@ export default function ProjectsSplitView() {
 	const currentProject = projects.find(p => p.name === activeProject);
 
 	return (
-		<div className="flex h-[85vh] w-full max-w-6xl mx-auto gap-4 p-4 transition-all duration-700 ease-in-out">
+		<div className="flex h-full max-h-full w-full gap-4 transition-all duration-700 ease-in-out">
 			{/* LEFT SIDE: Project List */}
 			<div
 				className={`
-				flex-1 flex flex-col gap-4 overflow-y-auto p-2
+				flex-1 flex flex-col gap-4 overflow-y-auto p-6
 				transition-all duration-500 ease-in-out
-				${activeProject ? 'max-w-[40%]' : 'max-w-full'}
+				${activeProject ? 'max-w-[40%]' : 'w-full'}
 			`}
 			>
-				<h2 className="text-2xl font-bold mb-4 dark:text-white px-4">
-					Projects
-				</h2>
 				<div
 					className={`grid gap-4 ${
 						activeProject
@@ -77,6 +81,7 @@ export default function ProjectsSplitView() {
 			{/* RIGHT SIDE: Detail Panel (Split Out) */}
 			<div
 				className={`
+				max-h-[98%]
 				transition-all duration-700 ease-in-out overflow-hidden
 				dark:bg-black/20 bg-slate-300/20 backdrop-blur-xl border border-white/40 
 				rounded-[3rem] shadow-2xl
@@ -89,25 +94,25 @@ export default function ProjectsSplitView() {
 			>
 				{currentProject && (
 					<div className="h-full flex flex-col animate-in fade-in slide-in-from-right-8 duration-700">
-						<div className="flex justify-between items-center mb-10">
+						<div className="flex justify-between items-center mb-7">
 							<h3 className="text-3xl font-black tracking-tighter dark:text-white uppercase">
-								Detail View
+								{currentProject.name}
 							</h3>
 							<button
 								onClick={() => setActiveProject(undefined)}
-								className="p-3 rounded-full bg-white/5 hover:bg-white/20 transition-all border border-white/10"
+								className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/20 transition-all border border-white/10"
 							>
 								✕
 							</button>
 						</div>
 
-						<div className="space-y-8 flex-grow">
+						<div className="space-y-6 flex-grow">
 							<section>
 								<h4 className="text-blue-400 text-sm font-mono mb-2">
-									/ NAME
+									/ Description
 								</h4>
-								<p className="text-4xl font-bold dark:text-white">
-									{currentProject.name}
+								<p className="text-lg font-bold dark:text-white">
+									{currentProject.description}
 								</p>
 							</section>
 
@@ -127,7 +132,7 @@ export default function ProjectsSplitView() {
 										Status
 									</p>
 									<p className="font-medium text-green-400">
-										Stable
+										Active
 									</p>
 								</div>
 							</div>

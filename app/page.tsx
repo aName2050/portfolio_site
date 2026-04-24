@@ -10,7 +10,6 @@ import {
 	HomeIcon,
 	InfoIcon,
 	MoonIcon,
-	PiIcon,
 	SunIcon,
 } from 'lucide-react';
 import Image from 'next/image';
@@ -109,9 +108,11 @@ export default function Home() {
 									animate={{ opacity: 1, y: 0 }}
 									exit={{ opacity: 0, y: -10 }}
 									transition={{ duration: 0.5 }}
-									className="grid grid-cols-3 grid-rows-3 gap-x-2 gap-y-12 w-full place-items-center"
+									className="grid grid-cols-3 grid-rows-3 gap-x-2 gap-y-12 w-full place-items-stretch"
 								>
-									{renderSection()}
+									<div className="col-span-3 row-span-3 w-full h-full">
+										{renderSection()}
+									</div>
 								</motion.div>
 							</AnimatePresence>
 						</div>
@@ -136,7 +137,7 @@ export default function Home() {
 				</span>
 
 				<InfoIcon
-					className="info-trigger text-black dark:text-white cursor-pointer rounded-full m-2 transition-colors p-[0.125rem] flex-shrink-0"
+					className="info-trigger text-black dark:text-white rounded-full m-2 transition-colors p-[0.125rem] flex-shrink-0"
 					size={32}
 				/>
 

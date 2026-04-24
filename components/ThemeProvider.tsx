@@ -14,6 +14,12 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
 	if (!mounted) return <>{children}</>;
 
 	return (
-		<NextThemesProvider attribute="class">{children}</NextThemesProvider>
+		<NextThemesProvider
+			attribute="class"
+			defaultTheme="dark"
+			disableTransitionOnChange
+		>
+			{children}
+		</NextThemesProvider>
 	);
 }

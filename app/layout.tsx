@@ -18,14 +18,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				<ThemeProvider
-					attribute="class" // Adds 'dark' or 'light' class to the <html> tag
-					defaultTheme="dark" // Default theme, e.g., 'system', 'dark', 'light'
-					enableSystem // Enables system theme detection
-					disableTransitionOnChange // Prevents flash of unstyled content
-				>
-					{children}
-				</ThemeProvider>
+				<ThemeProvider>{children}</ThemeProvider>
 			</body>
 		</html>
 	);
