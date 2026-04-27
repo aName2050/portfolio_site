@@ -43,16 +43,10 @@ export default function ProjectsSplitView() {
 				className={`
 				flex-1 flex flex-col gap-4 overflow-y-auto p-6
 				transition-all duration-500 ease-in-out
-				${activeProject ? 'max-w-[40%]' : 'w-full'}
+				max-w-[40%]
 			`}
 			>
-				<div
-					className={`grid gap-4 ${
-						activeProject
-							? 'grid-cols-1'
-							: 'grid-cols-2 lg:grid-cols-3'
-					}`}
-				>
+				<div className={`grid gap-4 grid-cols-1`}>
 					{projects.map(project => (
 						<button
 							key={project.name}
@@ -67,10 +61,10 @@ export default function ProjectsSplitView() {
 								}
 							`}
 						>
-							<p className="font-bold text-lg dark:text-white">
+							<p className="font-bold text-xl dark:text-white">
 								{project.name}
 							</p>
-							<p className="text-xs opacity-50 dark:text-gray-400">
+							<p className="text-sm opacity-80 dark:text-gray-200">
 								{calcAge(project.start)}
 							</p>
 						</button>
@@ -84,69 +78,56 @@ export default function ProjectsSplitView() {
 				max-h-[98%]
 				transition-all duration-700 ease-in-out overflow-hidden
 				dark:bg-black/20 bg-slate-300/20 backdrop-blur-xl border border-white/40 
-				rounded-[3rem] shadow-2xl
-				${
-					activeProject
-						? 'flex-[1.5] opacity-100 translate-x-0 p-8'
-						: 'flex-0 w-0 opacity-0 translate-x-20 pointer-events-none p-0'
-				}
-			`}
+				rounded-[3rem] shadow-2xl flex-[1.5] opacity-100 translate-x-0 p-8`}
 			>
-				{currentProject && (
-					<div className="h-full flex flex-col animate-in fade-in slide-in-from-right-8 duration-700">
-						<div className="flex justify-between items-center mb-7">
-							<h3 className="text-3xl font-black tracking-tighter dark:text-white uppercase">
-								{currentProject.name}
-							</h3>
-							<button
-								onClick={() => setActiveProject(undefined)}
-								className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/20 transition-all border border-white/10"
-							>
-								✕
-							</button>
-						</div>
-
-						<div className="space-y-6 flex-grow">
-							<section>
-								<h4 className="text-blue-400 text-sm font-mono mb-2">
-									/ Description
-								</h4>
-								<p className="text-lg font-bold dark:text-white">
-									{currentProject.description}
-								</p>
-							</section>
-
-							<div className="grid grid-cols-2 gap-4">
-								<div className="bg-white/5 p-4 rounded-2xl border border-white/10">
-									<p className="text-[10px] uppercase opacity-40 mb-1">
-										Started
-									</p>
-									<p className="font-medium">
-										{new Date(
-											currentProject.start
-										).toLocaleDateString()}
-									</p>
-								</div>
-								<div className="bg-white/5 p-4 rounded-2xl border border-white/10">
-									<p className="text-[10px] uppercase opacity-40 mb-1">
-										Status
-									</p>
-									<p className="font-medium text-green-400">
-										Active
-									</p>
-								</div>
-							</div>
-
-							<a
-								href={currentProject.github}
-								target="_blank"
-								className="block w-full text-center py-4 bg-white dark:bg-white/10 dark:text-white rounded-2xl font-bold hover:scale-[1.02] transition-transform active:scale-95"
-							>
-								Access Source
-							</a>
-						</div>
+				<div className="h-full flex flex-col animate-in fade-in slide-in-from-right-8 duration-700">
+					<div className="flex justify-between items-center mb-7">
+						<h3 className="text-3xl font-black tracking-tighter dark:text-white uppercase">
+							{currentProject?.name ?? 'Select a project'}
+						</h3>
 					</div>
-				)}
+
+					<div className="space-y-6 flex-grow">
+						<section>
+							<h4 className="dark:text-blue-400 text-blue-800 text-sm font-mono mb-2">
+								/ Description
+							</h4>
+							<p className="text-lg font-bold dark:text-white">
+								{currentProject?.description ??
+									'Select a project to see its description.'}
+							</p>
+						</section>
+
+						<div className="grid grid-cols-2 gap-4">
+							<div className="bg-white/5 p-4 rounded-2xl border border-white/10">
+								<p className="text-[10px] uppercase opacity-40 mb-1">
+									Started
+								</p>
+								<p className="font-medium">
+									{new Date(
+										currentProject?.start ?? Date.now()
+									).toLocaleDateString()}
+								</p>
+							</div>
+							<div className="bg-white/5 p-4 rounded-2xl border border-white/10">
+								<p className="text-[10px] uppercase opacity-40 mb-1">
+									Status
+								</p>
+								<p className="font-medium dark:text-green-400 text-green-700">
+									Active
+								</p>
+							</div>
+						</div>
+
+						<a
+							href={currentProject?.github ?? 'about:blank'}
+							target="_blank"
+							className="block w-full text-center py-4 bg-white dark:bg-white/10 dark:text-white rounded-2xl font-bold hover:scale-[1.02] transition-transform active:scale-95"
+						>
+							Access Source
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
